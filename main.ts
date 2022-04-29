@@ -4,14 +4,7 @@ input.onButtonPressed(Button.A, function () {
 input.onPinPressed(TouchPin.P2, function () {
     basic.showNumber(Points)
 })
-input.onButtonPressed(Button.B, function () {
-    sprite.change(LedSpriteProperty.X, 1)
-})
-let Catch: game.LedSprite = null
-let Points = 0
-let sprite: game.LedSprite = null
-sprite = game.createSprite(2, 4)
-basic.forever(function () {
+input.onButtonPressed(Button.AB, function () {
     while (!(input.pinIsPressed(TouchPin.P0))) {
         for (let index = 0; index < 4; index++) {
             Catch = game.createSprite(randint(0, 4), 0)
@@ -22,6 +15,9 @@ basic.forever(function () {
                 if (sprite.isTouching(Catch)) {
                     Points += 1
                     Catch.delete()
+                } else if (Points == 50) {
+                    basic.showString("YOU WIN ")
+                    control.reset()
                 }
             }
             Catch.delete()
@@ -35,6 +31,9 @@ basic.forever(function () {
                 if (sprite.isTouching(Catch)) {
                     Points += 1
                     Catch.delete()
+                } else if (Points == 50) {
+                    basic.showString("YOU WIN ")
+                    control.reset()
                 }
             }
             Catch.delete()
@@ -48,9 +47,12 @@ basic.forever(function () {
                 if (sprite.isTouching(Catch)) {
                     Points += 1
                     Catch.delete()
+                } else if (Points == 50) {
+                    basic.showString("YOU WIN ")
+                    control.reset()
                 }
+                Catch.delete()
             }
-            Catch.delete()
         }
         for (let index = 0; index < 10; index++) {
             Catch = game.createSprite(randint(0, 4), 0)
@@ -61,9 +63,19 @@ basic.forever(function () {
                 if (sprite.isTouching(Catch)) {
                     Points += 1
                     Catch.delete()
+                } else if (Points == 50) {
+                    basic.showString("YOU WIN ")
+                    control.reset()
                 }
             }
             Catch.delete()
         }
     }
 })
+input.onButtonPressed(Button.B, function () {
+    sprite.change(LedSpriteProperty.X, 1)
+})
+let Catch: game.LedSprite = null
+let Points = 0
+let sprite: game.LedSprite = null
+sprite = game.createSprite(2, 4)
